@@ -1,0 +1,50 @@
+# General Environment
+version: "3.7"
+services:
+  frontend:
+    image: node:12
+    user: node
+    working_dir: /home/node/app
+    volumes:
+      - ./frontend:/home/node/app
+    restart: always
+    ports:
+      - 80:3000
+    command: "npm start"
+  mongo:
+    image: mongo:4
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: hr
+      MONGO_INITDB_ROOT_USERNAME: winnaries
+      MONGO_INITDB_ROOT_PASSWORD: intergames14
+    networks:
+      - main
+  mongo-express:
+    image: mongo-express:latest
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+    networks:
+      - main
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_ADMINUSERNAME: winnaries
+      ME_CONFIG_MONGODB_ADMINPASSWORD: intergames14
+      ME_CONFIG_BASICAUTH_USERNAME: winnaries
+      ME_CONFIG_BASICAUTH_PASSWORD: intergames14
+
+networks:
+  main:
+    driver: bridge
+    external: false
+
+volumes:
+  mongo:
+    external: false

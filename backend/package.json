@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "The backend of this project implement Express framework and MongoDB to create an API. Written here is the list of API endpoint that are sufficient and necessary to build a frontend. Simply, we categorised the API into two which are administrator and public routes.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.2.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.8.11"
+  }
+}
