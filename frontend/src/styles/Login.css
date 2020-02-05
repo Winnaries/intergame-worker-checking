@@ -1,15 +1,15 @@
 .adminPage {
     width: 100vw;
-    height: 720px;
+    height: 900px;
     grid-template-columns: 1fr 20fr 1fr;
-    grid-template-rows: 1fr 1.5fr 1fr;
+    grid-template-rows: 1fr 1.5fr 1fr 210px;
     position: absolute;
     top: 0;
     left: 0;
     overflow: hidden;
     /* HERE */
     display: grid;
-    font-family: "PT Sans Caption", sans-serif;
+    font-family: 'Poppins', sans-serif;
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -27,7 +27,7 @@
 }
 
 .whiteBox .title {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.8em;
     grid-row: 1;
     display: flex;
@@ -63,7 +63,7 @@
     color: white;
     background-color: rgb(42, 115, 251);
     box-shadow: 0 10px 20px rgba(3, 27, 78, 0.1);
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .whiteBox .submitBtn:focus {
@@ -100,7 +100,7 @@
     color: transparent;
 }
 
-.whiteBoxForm .firstNameField {
+.whiteBoxForm .passwordField {
     grid-row: 1;
 }
 

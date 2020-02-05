@@ -8,7 +8,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 2fr 2fr;
-    font-family: "PT Sans Caption", sans-serif;
+    font-family: 'Poppins', sans-serif;
     
 }
 
@@ -39,20 +39,24 @@
     display: flex;
     align-self: center;
     width: 40%;
-    height: 24%;
+    height: 50px;
     border-radius: 5px;
     justify-self: center;
     align-items: center;
     justify-content: center;
     background:white;
+    color: #0069ff;
     border:none;
-    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     font-size: 1.2em;
     box-shadow:0 10px 20px rgba(3,27,78,.1);
+    transition: all .1s ease;
     
 }
 
 .qr .btn:hover {
+    transition: all .1s ease;
     cursor: pointer;
     box-shadow:0 10px 20px rgba(3,27,78,.2);
     

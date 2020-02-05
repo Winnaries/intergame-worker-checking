@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../../styles/WorkerForm.css";
 import QR from "../../components/QR";
 
@@ -10,8 +10,15 @@ export default () => {
     });
     const [redirect, setRedirect] = useState(false);
 
+    const scrollToForm = ref => {
+        window.scrollTo({ behavior: "smooth", top: 100, position: "absolute" });
+    };
+
+    const formRef = useRef(null);
+    const executeScroll = () => scrollToForm(formRef);
+
     const clearForm = () => {
-        Object.keys(field).map(key => field[key] = "");
+        Object.keys(field).map(key => (field[key] = ""));
     };
 
     const handleSubmit = event => {
@@ -42,7 +49,7 @@ export default () => {
         <div className="userFormPage">
             <div className="submitInfo">
                 <div className="title">Enter Your Information</div>
-                <form className="formExample" onSubmit={handleSubmit}>
+                <form className="formExample" onSubmit={handleSubmit} ref={formRef}>
                     <input
                         name="firstname"
                         type="text"
@@ -53,6 +60,7 @@ export default () => {
                         placeholder="First name"
                         title="Enter your first name"
                         required
+                        onSelect={executeScroll}
                     />
                     <input
                         name="lastname"
@@ -64,6 +72,7 @@ export default () => {
                         placeholder="Last name"
                         title="Enter your last name"
                         required
+                        onSelect={executeScroll}
                     />
                     <input
                         name="studentID"
@@ -75,11 +84,9 @@ export default () => {
                         placeholder="Student ID"
                         title="Enter your Chulalongkorn Student ID"
                         required
+                        onSelect={executeScroll}
                     />
-                    <button
-                        className="submitBtn"
-                        type="submit"
-                    >
+                    <button className="submitBtn" type="submit">
                         Submit
                     </button>
                 </form>

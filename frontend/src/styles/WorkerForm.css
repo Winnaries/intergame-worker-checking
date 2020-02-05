@@ -1,24 +1,22 @@
 body {
-    background: #396afc;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient( to right, #2948ff, #396afc);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient( to right, #2948ff, #396afc);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #005C97;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .userFormPage {
     width: 100vw;
-    height: 720px;
+    height: 820px;
     grid-template-columns: 1fr 20fr 1fr;
-    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr 100px;
     position: absolute;
     top: 0;
     left: 0;
     overflow: hidden;
     /* HERE */
     display: grid;
-    font-family: "PT Sans Caption", sans-serif;
+    font-family: 'Poppins', sans-serif;
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -36,7 +34,7 @@ body {
 }
 
 .submitInfo .title {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.8em;
     grid-row: 1;
     display: flex;
@@ -72,7 +70,7 @@ body {
     color: white;
     background-color: rgb(42, 115, 251);
     box-shadow: 0 10px 20px rgba(3, 27, 78, 0.1);
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .submitInfo .submitBtn:focus {
@@ -86,7 +84,7 @@ body {
     height: 100%;
     display: flex;
     align-self: center;
-    font-family: sans-serif;
+    font-weight: light;
     font-size: 1em;
     border: none;
     /* <-- Remove initial settings */

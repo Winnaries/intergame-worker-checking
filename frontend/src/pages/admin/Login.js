@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../../styles/Login.css";
+import { Redirect } from "react-router-dom";
 
 export default () => {
     const [field, setField] = useState({
-        secretKey:""
+        secretKey: ""
     });
+    const [redirect, setRedirect] = useState(false);
+
+    const scrollToForm = ref => {
+        window.scrollTo({ behavior: "smooth", top: 180, position: "absolute" });
+    };
+
+    const formRef = useRef(null);
+    const executeScroll = () => scrollToForm(formRef);
 
     const handleSubmit = event => {
         event.preventDefault();
         // COMPARE SECRET KEY
-        alert("Logged in");
+        if(field.secretKey === "password") setRedirect(true);
     };
 
     const handleChange = event => {
@@ -19,24 +28,23 @@ export default () => {
         setField(fieldcopy);
     };
 
+    if(redirect) return <Redirect to="/admin/dashboard"/>
     return (
         <div className="adminPage">
             <div className="whiteBox">
                 <div className="title">Admin Login</div>
-                <form className="whiteBoxForm" onSubmit={handleSubmit}>
+                <form className="whiteBoxForm" onSubmit={handleSubmit} ref={formRef}>
                     <input
                         name="secretKey"
                         type="password"
-                        className="firstNameField formField"
+                        className="passwordField formField"
                         onChange={handleChange}
                         value={field.secretKey}
-                        placeholder="Enter secret key"
+                        placeholder="Enter password"
                         required
+                        onSelect={executeScroll}
                     />
-                    <button
-                        className="submitBtn"
-                        type="submit"
-                    >
+                    <button className="submitBtn" type="submit">
                         Submit
                     </button>
                 </form>
