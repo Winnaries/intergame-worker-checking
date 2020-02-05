@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import QRCode from "qrcode.react";
-import "../styles/QR.css";
+import "../styles/qr.css";
 import { Redirect } from "react-router-dom";
 
 export default props => {

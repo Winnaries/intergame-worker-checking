@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import "../styles/userFormPage.css";
-import QR from "../components/QR";
+import "../../styles/WorkerForm.css";
+import QR from "../../components/QR";
 
 export default () => {
     const [field, setField] = useState({
         firstname: "",
         lastname: "",
         studentID: ""
-    });
-    const [errors, setErrors] = useState({
-        firstname: false,
-        lastname: false,
-        studentID: false
     });
     const [redirect, setRedirect] = useState(false);
 
@@ -22,8 +17,8 @@ export default () => {
     const handleSubmit = event => {
         event.preventDefault();
         console.log("Submitting...");
+        // CODE HERE TO GENERATE QR
         setRedirect(true);
-        // CODE TO SUBMIT HERE
     };
 
     const handleChange = event => {
