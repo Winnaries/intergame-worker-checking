@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/userFormPage.css";
-import QR from "../components/QR";
+import "../../styles/WorkerForm.css";
+import QR from "../../components/QR";
 
 export default () => {
     const [field, setField] = useState({
@@ -8,37 +8,17 @@ export default () => {
         lastname: "",
         studentID: ""
     });
-    const [errors, setErrors] = useState({
-        firstname: false,
-        lastname: false,
-        studentID: false
-    });
     const [redirect, setRedirect] = useState(false);
 
-    const checkEmptyFields = () => {
-        if (field.firstname === "" || field.lastname === "" || field.studentID === "") return true;
-        return false;
-    }
-
-    const validateForm = () => {
-        let currentErrors = {};
-
-        if (!/^[a-zA-Z- ]{1,50}$/.test(field.firstname))
-            currentErrors.firstname = true;
-        if (!/^[a-zA-Z- ]{1,50}$/.test(field.lastname))
-            currentErrors.lastname = true;
-        if (!/^[0-9]{1,10}$/.test(field.studentID))
-            currentErrors.studentID = true;
-
-        if (Object.entries(currentErrors).length === 0) return true;
-        setErrors(currentErrors);
-        alert("Invalid information");
+    const clearForm = () => {
+        Object.keys(field).map(key => field[key] = "");
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = event => {
+        event.preventDefault();
         console.log("Submitting...");
-        if (validateForm()) setRedirect(true);
-        // CODE TO SUBMIT HERE
+        // CODE HERE TO GENERATE QR
+        setRedirect(true);
     };
 
     const handleChange = event => {
@@ -48,7 +28,16 @@ export default () => {
         setField(fieldcopy);
     };
 
-    if(redirect) return <QR/>
+    if (redirect)
+        return (
+            <QR
+                firstname={field.firstname}
+                lastname={field.lastname}
+                studentID={field.studentID}
+                redirect={setRedirect}
+                clear={clearForm}
+            />
+        );
     return (
         <div className="userFormPage">
             <div className="submitInfo">
@@ -59,8 +48,11 @@ export default () => {
                         type="text"
                         className="firstNameField formField"
                         onChange={handleChange}
+                        pattern="^[a-zA-Z- ]{1,50}$"
                         value={field.firstname}
                         placeholder="First name"
+                        title="Enter your first name"
+                        required
                     />
                     <input
                         name="lastname"
@@ -68,7 +60,10 @@ export default () => {
                         className="lastnameField formField"
                         onChange={handleChange}
                         value={field.lastname}
+                        pattern="^[a-zA-Z- ]{1,50}$"
                         placeholder="Last name"
+                        title="Enter your last name"
+                        required
                     />
                     <input
                         name="studentID"
@@ -76,9 +71,15 @@ export default () => {
                         className="studentIDField formField"
                         onChange={handleChange}
                         value={field.studentID}
+                        pattern="^[0-9]{1,10}$"
                         placeholder="Student ID"
+                        title="Enter your Chulalongkorn Student ID"
+                        required
                     />
-                    <button className="submitBtn" type="submit" disabled={checkEmptyFields()}>
+                    <button
+                        className="submitBtn"
+                        type="submit"
+                    >
                         Submit
                     </button>
                 </form>

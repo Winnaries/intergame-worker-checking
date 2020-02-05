@@ -1,18 +1,30 @@
-import React from "react";
-import "../styles/QR.css";
+import React, { useContext, useState } from "react";
+import QRCode from "qrcode.react";
+import "../styles/qr.css";
+import { Redirect } from "react-router-dom";
 
-export default () => {
+export default props => {
+
+
+    const handleClick = event => {
+        event.preventDefault();
+        props.clear();
+        props.redirect(false);
+    };
+
     return (
         <div className="qr">
             <div className="qrcode">
-                <img src="https://www.qr-code-generator.com/wp-content/themes/qr/new_structure/markets/core_market_full/generator/dist/generator/assets/images/websiteQRCode_noFrame.png"></img>
+                <QRCode
+                    value={`http://backend.com/api/?firstname=${props.firstname}?lastname=${props.name}?studentID=${props.studentID}`}
+                    className="generated"
+                    size="2048"
+                />
             </div>
-           
+            <button className="btn" onClick={handleClick}>
+                Go back
+            </button>
         </div>
     );
 };
-
-/*
- <div className="btn">
-                Expires in: 5 minutes
-            </div>*/
+ 

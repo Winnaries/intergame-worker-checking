@@ -1,0 +1,10 @@
+.dashboard {
+    overflow: hidden;
+    width: 100vw;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-rows: 1fr 8fr 1fr;
+}

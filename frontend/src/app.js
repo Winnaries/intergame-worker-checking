@@ -1,20 +1,18 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import UserFormPage from "./pages/userFormPage.js";
+import { InfoProvider } from "./contexts/InfoContext.js";
+import WorkerForm from "./pages/user/WorkerForm.js";
+import Login from "./pages/admin/Login.js";
+import Dashboard from "./pages/admin/Dashboard.js";
 
 export default () => {
-    return(
-        <Switch>
-            <Route exact path="/" component={UserFormPage} />
-        </Switch>
-    )
+    return (
+        <InfoProvider>
+            <Switch>
+                <Route exact path="/" component={WorkerForm} />
+                <Route exact path="/admin" component={Login} />
+                <Route path="/admin/dashboard" component={Dashboard} />
+            </Switch>
+        </InfoProvider>
+    );
 };
-
-/* protected route format
-<UserRoute exact path="/questions">
-                <QuestionProvider>
-                    <Questions />
-                </QuestionProvider>
-            </UserRoute> 
-            <Route component={ErrorPage} />*/
-            
