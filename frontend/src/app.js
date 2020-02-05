@@ -1,13 +1,18 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import UserFormPage from "./pages/userFormPage.js";
+import AdminPage from "./pages/adminPage.js";
+import { InfoProvider } from "./contexts/InfoContext.js";
 
 export default () => {
-    return(
-        <Switch>
-            <Route exact path="/" component={UserFormPage} />
-        </Switch>
-    )
+    return (
+        <InfoProvider>
+            <Switch>
+                <Route exact path="/" component={UserFormPage} />
+                <Route exact path="/admin" component={AdminPage} />
+            </Switch>
+        </InfoProvider>
+    );
 };
 
 /* protected route format
@@ -17,4 +22,3 @@ export default () => {
                 </QuestionProvider>
             </UserRoute> 
             <Route component={ErrorPage} />*/
-            
