@@ -10,10 +10,13 @@
     border-bottom: 1px solid #f1f1f1;
     color: rgb(109, 109, 109);
     font-weight: 400;
+    transition: all 0.25s ease;
 }
 
-.session:active {
-    background: rgba(245, 245, 245, 0.425);
+.session:hover {
+    background: rgba(245, 245, 245, 0.699);
+    cursor: pointer;
+    transition: all 0.25s ease;
 }
 
 .session .session-name {

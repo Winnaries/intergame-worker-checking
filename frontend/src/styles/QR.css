@@ -56,8 +56,10 @@
 }
 
 .qr .btn:hover {
-    transition: all .1s ease;
     cursor: pointer;
-    box-shadow:0 10px 20px rgba(3,27,78,.2);
+    background: #0069ff;
+    box-shadow: 0 10px 20px rgba(3, 27, 78, 0.2);
+    color: white;
+    transition: all .25s ease;
     
 }

@@ -3,6 +3,9 @@ import "../../styles/Login.css";
 import "../../styles/Dashboard.css";
 import { InfoContext } from "../../contexts/InfoContext";
 import Session from "../../components/Session";
+import CreateSession from "../../components/CreateSession";
+import EditSession from "../../components/EditSession";
+
 
 export default () => {
     const context = useContext(InfoContext);
@@ -38,14 +41,22 @@ export default () => {
             startTime: "12.45-14.00",
             endTime: +new Date(),
             workers: 10
-        },
-        {
-            name: "Cutout",
-            startTime: "9.00-12.00",
-            endTime: +new Date(),
-            workers: 35
         }
     ]);
+
+    // Define view modes by "view", "edit", "create"
+    const [viewMode, setViewMode] = useState("edit")
+
+    const displayView = () => {
+        switch(viewMode) {
+            case "edit":
+                return <EditSession/>
+            case "create":
+                return <CreateSession/>
+            default:
+                return null;
+        }
+    }
 
     const listSessions = () => {
         let toRender = sessions.map(session => {
@@ -62,12 +73,11 @@ export default () => {
 
     return (
         <div className="dashboard">
-            <div className="title">Intergames HR</div>
+            <div className="header">Intergames HR</div>
             <div className="white-box">
                 <div className="sessions-title">Sessions</div>
                 <Session name="Sector" time="Time" workers="People" className="sessions-label"/>
                 <div className="sessions-content">
-
                     {listSessions()}
                 </div>
             </div>

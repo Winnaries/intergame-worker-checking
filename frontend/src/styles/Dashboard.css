@@ -11,7 +11,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.dashboard .title {
+.dashboard .header {
     grid-row: 1;
     grid-column: 2;
     color: white;
@@ -88,17 +88,18 @@
 @media (min-width: 1200px) {
     .dashboard {
         height: 100%;
-        grid-template-rows: 2fr 1fr 7.4fr 1fr 1fr 1fr;
+        grid-template-rows: 2fr 1fr 9fr 1fr 1fr 1fr;
     }
     .dashboard .white-box {
         margin-left: 20%;
         margin-right: 20%;
     }
-    .dashboard .title {
+    .dashboard .header {
         grid-column: 1/4;
         color: #0069ff;
         background: white;
         font-size: 1.6em;
+        display: flex;
         padding-left: 4%;
         justify-self: normal;
         align-self: normal;

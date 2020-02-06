@@ -1,51 +1,41 @@
-body {
-    background: #005C97;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-
-.userFormPage {
-    width: 100vw;
-    height: 820px;
-    grid-template-columns: 1fr 20fr 1fr;
-    grid-template-rows: 1fr 4fr 1fr 100px;
+.worker-form {
     position: absolute;
     top: 0;
     left: 0;
-    overflow: hidden;
-    /* HERE */
+    width: 100vw;
+    height: 820px;
     display: grid;
-    font-family: 'Poppins', sans-serif;
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    grid-template-columns: 1fr 20fr 1fr;
+    grid-template-rows: 1fr 1fr 9fr 1fr 1fr 100px;
+    overflow: hidden;
 }
 
-.submitInfo {
+.worker-form .white-box {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 3;
     display: grid;
     grid-template-rows: 3fr 6fr;
-    overflow: hidden;
-    background-color: white;
+    background: white;
+    color: rgb(16, 33, 78);
+    box-shadow: 0 10px 20px rgba(3, 27, 78, .1);
     border: 1px solid rgba(3, 27, 78, .1);
     border-radius: 5px;
-    box-shadow: 0 10px 20px rgba(3, 27, 78, .1);
-    color: rgb(16, 33, 78);
+    overflow: hidden;
 }
 
-.submitInfo .title {
+.worker-form .white-box>title {
+    grid-row: 1;
     font-weight: 600;
     font-size: 1.8em;
-    grid-row: 1;
     display: flex;
     justify-self: center;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
     width: 80%;
 }
 
-.submitInfo .formExample {
+.worker-form .white-box>form {
     grid-row: 2;
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
@@ -53,7 +43,7 @@ body {
     grid-row-gap: 20px;
 }
 
-.submitInfo .submitBtn {
+.worker-form .white-box>form>button {
     transition: all .25s ease;
     border: none;
     border-radius: 5px;
@@ -73,12 +63,12 @@ body {
     font-weight: 600;
 }
 
-.submitInfo .submitBtn:focus {
+.worker-form .white-box>form>button:focus {
     transition: all 0.25s ease;
     outline: none !important;
 }
 
-.formExample .formField {
+.worker-form .white-box>form>input {
     transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
     grid-column: 2;
     height: 100%;
@@ -87,42 +77,29 @@ body {
     font-weight: light;
     font-size: 1em;
     border: none;
-    /* <-- Remove initial settings */
     border: solid 1px #f1f1f1;
     border-radius: 5px;
     padding-left: 4%;
 }
 
-.formExample .formField::placeholder {
+.worker-form .white-box>form>input::placeholder {
     color: rgba(3, 27, 78, .7);
 }
 
-.formExample .formField:focus {
+.worker-form .white-box>form>input:focus {
     transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
     outline: none !important;
     border: solid 1px rgb(38, 54, 250);
 }
 
-.formExample .formField:focus::placeholder {
+.worker-form .white-box>form>input:focus::placeholder {
     color: transparent;
-}
-
-.formExample .firstNameField {
-    grid-row: 1;
-}
-
-.formExample .lastnameField {
-    grid-row: 2;
-}
-
-.formExample .studentIDField {
-    grid-row: 3;
 }
 
 /*Small devices (landscape phones, 576px and up)*/
 
 @media (min-width: 576px) {
-    .userFormPage {
+    .worker-form {
         width: 100vw;
         height: 100vw;
         grid-template-columns: 1fr 20fr 1fr;
@@ -133,45 +110,45 @@ body {
 /* Medium devices (tablets, 768px and up)*/
 
 @media (min-width: 768px) {
-    .userFormPage {
-        width: 100vw;
-        height: 720px;
-        grid-template-columns: 1fr 20fr 1fr;
-        grid-template-rows: 1fr 16fr 1fr;
+    .worker-form {
+        height: 100%;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 2fr 1fr 7fr 5fr;
     }
 }
 
 /*Large devices (desktops, 992px and up)*/
 
-@media (min-width: 992px) {
-    .userFormPage {
-        width: 100vw;
-        height: 720px;
-        grid-template-columns: 1fr 20fr 1fr;
-        grid-template-rows: 0.5fr 4fr 1.5fr;
+@media (min-width: 992px) and (orientation: portrait) {
+    .worker-form {
+        grid-template-rows: 2fr 1fr 6fr 6fr;
     }
 }
+
+@media (min-width: 992px) and (orientation: landscape) {
+    .worker-form {
+        grid-template-rows: 2fr 2fr 8fr 3fr;
+    }
+}
+
 
 /* Extra large devices (large desktops, 1200px and up)*/
 
 @media (min-width: 1200px) {
-    .submitInfo .submitBtn:hover {
+    .worker-form {
+        grid-template-columns: 3fr 3fr 3fr;
+        grid-template-rows: 2fr 2fr 9fr 2fr;
+    }
+    .worker-form .white-box>form {
+        grid-template-columns: 1fr 4fr 1fr !important;
+    }
+    .worker-form .white-box>form>button:hover {
         transition: all .25s ease;
         background-color: rgb(38, 54, 250);
         cursor: pointer;
     }
-    .formExample .formField:hover {
+    .worker-form .white-box>form>input:hover {
         transition: all 0.2s ease;
         border: solid 1px rgba(42, 152, 255, 0.5);
-    }
-    .userFormPage {
-        display: grid;
-        width: 100%;
-        height: 100%;
-        grid-template-columns: 3fr 4fr 3fr;
-        grid-template-rows: 1.5fr 8fr 1.5fr;
-    }
-    .submitInfo .formExample {
-        grid-template-columns: 1fr 4fr 1fr !important;
     }
 }

@@ -9,7 +9,7 @@ export default () => {
     const [redirect, setRedirect] = useState(false);
 
     const scrollToForm = ref => {
-        window.scrollTo({ behavior: "smooth", top: 180, position: "absolute" });
+        window.scrollTo({ behavior: "smooth", top: 100, position: "absolute" });
     };
 
     const formRef = useRef(null);
@@ -31,6 +31,7 @@ export default () => {
     if(redirect) return <Redirect to="/admin/dashboard"/>
     return (
         <div className="adminPage">
+            <div className="header">Intergames HR</div>
             <div className="whiteBox">
                 <div className="title">Admin Login</div>
                 <form className="whiteBoxForm" onSubmit={handleSubmit} ref={formRef}>

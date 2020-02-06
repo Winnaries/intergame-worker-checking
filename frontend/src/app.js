@@ -4,6 +4,7 @@ import { InfoProvider } from "./contexts/InfoContext.js";
 import WorkerForm from "./pages/user/WorkerForm.js";
 import Login from "./pages/admin/Login.js";
 import Dashboard from "./pages/admin/Dashboard.js";
+import "./styles/Main.css";
 
 export default () => {
     return (
