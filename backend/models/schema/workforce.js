@@ -16,30 +16,40 @@ const workerSchema = new Schema({
         match: /[0-9]{10}/
     },
     major: String,
-    departments: Array
+    teams: Array
 });
 
 const sessionSchema = new Schema({
-    name: {
+    teams: [{
         type: String,
-        maxlength: 20
-    },
+        maxlength: 10
+    }],
     time: {
         start: Date,
         end: Date
     },
-    note: {
+    description: {
         type: String,
         maxlength: 100
     },
-    participants: [{
+    state: {
+        type: Boolean,
+        default: false
+    },
+    joined: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Worker'
+    }],
+    pending: [{
         worker: {
             type: Schema.Types.ObjectId,
             ref: 'Worker'
         },
-        activated: {
-            type: Boolean,
-            default: false
+        identifier: {
+            type: String,
+            match: /[a-zA-Z0-9]{7}/,
+            required: true,
+            select: false
         }
     }]
 });

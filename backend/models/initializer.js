@@ -1,24 +1,11 @@
 const mongoose = require('mongoose');
-const config = require('config');
 const csv = require('fast-csv');
 const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
+require('./connection');
 
 const { Worker } = require('./schema/workforce.js');
-
-const dbUrl = config.get('Workforce.dbUrl');
-const dbConfig = config.get('Workforce.dbConfig');
-
-mongoose.connect(dbUrl, dbConfig).catch(err => console.log(err));
-mongoose.connection
-    .on('connecting', () => console.log('DB: Connecting'))
-    .on('connected', () => console.log('DB: Connected'))
-    .on('disconnecting', () => console.log('DB: Disconnecting'))
-    .on('disconnected', () => console.log('DB: Disconnected'))
-    .on('close', () => console.log('DB: Close'))
-    .on('reconnected', () => console.log('DB: Reconnected'))
-    .on('error', (err) => console.log('DB: Error', err));
 
 fs.createReadStream(path.resolve(__dirname, 'assets', 'workforce-v1.csv'))
     .pipe(csv.parse({ headers: false }))
@@ -36,7 +23,7 @@ fs.createReadStream(path.resolve(__dirname, 'assets', 'workforce-v1.csv'))
         worker.cuid = row[3];
         worker.tel = row[4];
         worker.major = row[5];
-        worker.departments = row[6];
+        worker.teams = row[6];
         worker.save();
     })
     .on('end', rowCount => console.log(`Parsed ${rowCount} rows`));
