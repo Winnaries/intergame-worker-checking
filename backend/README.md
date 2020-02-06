@@ -36,7 +36,7 @@ The following API is restricted to site administrator and require authentication
 #### `POST /api/admin/sessions`
 - Create a new session 
 - Body Parameters
-	- **sector**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
+	- **teams**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
 	- **start**:  a timestamp in a format of `hh:mm[AM/PM]` for example `10:24AM`
 	- **end**: a timestamp, in the same format, after the start time
 	- **[note]**: any note for this session
@@ -46,7 +46,7 @@ The following API is restricted to site administrator and require authentication
 - Path Parameters
 	- **id**: a unique session ID
 - Body Parameters
-	- **sector**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
+	- **teams**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
 	- **start**:  a timestamp in a format of `hh:mm[AM/PM]` for example `10:24AM`
 	- **end**: a timestamp, in the same format, after the start time
 	- **[note]**: any note for this session
