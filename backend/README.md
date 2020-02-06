@@ -37,7 +37,7 @@ The following API is restricted to site administrator and require authentication
 - Create a new session 
 - Body Parameters
 	- **teams**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
-	- **date**: the date when the session takes place
+	- **date**: the date when the session takes place  in a format of `dd:mm`
 	- **start**:  a timestamp in a format of `hh:mm` for example `13:45`
 	- **end**: a timestamp, in the same format, after the start time
 	- **[note]**: any note for this session
@@ -48,7 +48,7 @@ The following API is restricted to site administrator and require authentication
 	- **id**: a unique session ID
 - Body Parameters
 	- **teams**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
-	- **date**: the date when the session takes place
+	- **date**: the date when the session takes place in a format of `dd:mm`
 	- **start**:  a timestamp in a format of `hh:mm` for example `13:45`
 	- **end**: a timestamp, in the same format, after the start time
 	- **[note]**: any note for this session
