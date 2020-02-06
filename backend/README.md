@@ -2,7 +2,7 @@
 
 The backend of this project implement Express framework and MongoDB to create an API. Written here is the list of API endpoint that are sufficient and necessary to build a frontend. Simply, we categorised the API into two which are administrator and public routes. 
 
-**NOTE:** The default content-type for POST and DELETE is application/json. Whilst the GET and DELETE do not have content-type header.
+**NOTE:** The default content-type for POST and DELETE is `application/json`. Whilst the GET and DELETE do not have content-type header.
 
 ## Authentication Routes
 
@@ -37,7 +37,8 @@ The following API is restricted to site administrator and require authentication
 - Create a new session 
 - Body Parameters
 	- **teams**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
-	- **start**:  a timestamp in a format of `hh:mm[AM/PM]` for example `10:24AM`
+	- **date**: the date when the session takes place
+	- **start**:  a timestamp in a format of `hh:mm` for example `13:45`
 	- **end**: a timestamp, in the same format, after the start time
 	- **[note]**: any note for this session
 
@@ -47,7 +48,8 @@ The following API is restricted to site administrator and require authentication
 	- **id**: a unique session ID
 - Body Parameters
 	- **teams**: `design`, `finance`, `hr`, `welfare`, `stand`, `show`, or `structure`
-	- **start**:  a timestamp in a format of `hh:mm[AM/PM]` for example `10:24AM`
+	- **date**: the date when the session takes place
+	- **start**:  a timestamp in a format of `hh:mm` for example `13:45`
 	- **end**: a timestamp, in the same format, after the start time
 	- **[note]**: any note for this session
 
