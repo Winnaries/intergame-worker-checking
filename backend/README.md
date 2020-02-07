@@ -84,8 +84,8 @@ Listed below are the list of API that anyone can access without restriction.
 - Path Parameters
 	- **studentID**: a unique 10-digits Chula Student ID (e.g. `6238034521`)
 
-#### `GET /api/students/:sessionID` 
-- Get all students in a specified session
+#### `GET /api/students/:sessionID/[active||pending]` 
+- Get all students in a specified session (either active or inactive can be specified in the path)
 - Path Parameters
 	- **sessionID**: a unique session ID
 
