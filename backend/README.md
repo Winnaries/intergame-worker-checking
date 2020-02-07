@@ -50,7 +50,7 @@ The following API is restricted to site administrator and require authentication
 	- **end**: a timestamp, in the same format, after the start time
 	- **[note]**: any note for this session
 
-#### `PUT /api/admin/sessions/:id/:type(open|close)`
+#### `PUT /api/admin/sessions/:id/[open||close]`
 - Open or close an existing session
 - Path Parameters
 	- **id**: a unique session ID
