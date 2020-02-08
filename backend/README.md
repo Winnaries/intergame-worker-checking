@@ -137,10 +137,16 @@ Listed below are the list of API that anyone can access without restriction.
 	- **id**: a unique 10-digits Chula Student ID (e.g. `6238034521`)
 - Return a `json` of **Session Object**
 
-#### `GET /api/sessions/:studentID([0-9]{10})`
+#### `GET /api/workers/:studentID([0-9]{10})/sessions`
 - Get all sessions that the specified student has joined
 - Path Parameters
 	- **studentID**: a unique 10-digits Chula Student ID (e.g. `6238034521`)
+- Return a `json` list of **Session Object** 
+
+#### `GET /api/workers/:workerID/sessions`
+- Get all sessions that the specified student has joined
+- Path Parameters
+	- **workerID**: a unique ID given by the system
 - Return a `json` list of **Session Object** 
 
 #### `GET /api/workers/:sessionID/[active||pending]` 
