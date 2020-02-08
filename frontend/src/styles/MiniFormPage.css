@@ -1,0 +1,14 @@
+.mini-form-page {
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 80%;
+    top: 20%;
+    height: 440px;
+    z-index: 2;
+    overflow: hidden;
+}

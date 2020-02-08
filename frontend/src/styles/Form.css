@@ -1,15 +1,4 @@
-.worker-form {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 720px;
-    display: grid;
-    grid-template-rows: 1fr 9fr;
-    overflow: hidden;
-}
-
-.worker-form>form {
+.form>form {
     grid-row: 2;
     display: grid;
     grid-template-rows: auto repeat(4, 1fr);
@@ -24,13 +13,7 @@
     overflow: hidden;
 }
 
-.admin-form>form {
-    grid-template-rows: auto repeat(2, 1fr);
-    margin: 40% 5% 55%;
-    row-gap: 10%;
-}
-
-.worker-form>form>title {
+.form>form>title {
     font-weight: 600;
     font-size: 1.8em;
     display: flex;
@@ -40,7 +23,7 @@
     width: 60%;
 }
 
-.worker-form>form>button {
+.form>form>button {
     font-weight: 600;
     transition: all .25s ease;
     border: none;
@@ -53,12 +36,12 @@
     box-shadow: 0 10px 20px rgba(3, 27, 78, 0.1);
 }
 
-.worker-form>form>button:focus {
+.form>form>button:focus {
     transition: all 0.25s ease;
     outline: none !important;
 }
 
-.worker-form>form>input {
+.form>form>input {
     background-image: linear-gradient(transparent, transparent);
     /* For removing input box outline in iOS */
     transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
@@ -76,16 +59,16 @@
     /* So that the input text doesn't stick left */
 }
 
-.worker-form>form>input::placeholder {
+.form>form>input::placeholder {
     color: rgba(3, 27, 78, .7);
 }
 
-.worker-form>form>input:focus {
+.form>form>input:focus {
     transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
     outline: none !important;
     border: solid 1px rgb(38, 54, 250);
 }
 
-.worker-form>form>input:focus::placeholder {
+.form>form>input:focus::placeholder {
     color: transparent;
 }

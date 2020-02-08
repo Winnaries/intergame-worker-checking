@@ -1,30 +1,21 @@
-import React, { useContext, useState } from "react";
-import QRCode from "qrcode.react";
+import React, { useContext } from "react";
 import "../styles/QR.css";
-import { Redirect } from "react-router-dom";
+import QRCode from "qrcode.react";
+import { ValueContext } from "../contexts/ValueContext";
 
-export default props => {
-
-
-    const handleClick = event => {
-        event.preventDefault();
-        props.clear();
-        props.redirect(false);
-    };
+export default () => {
+    const val = useContext(ValueContext);
 
     return (
         <div className="qr">
             <div className="qrcode">
                 <QRCode
-                    value={`http://backend.com/api/?firstname=${props.firstname}?lastname=${props.name}?studentID=${props.studentID}`}
+                    value={val.values.QR?val.values.QR:""}
                     className="generated"
                     size="2048"
                 />
             </div>
-            <button className="btn" onClick={handleClick}>
-                Go back
-            </button>
         </div>
     );
 };
- 
+

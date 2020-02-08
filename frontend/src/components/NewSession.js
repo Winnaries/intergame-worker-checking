@@ -14,7 +14,7 @@ export default () => {
     return (
         <div className="mini-form-page">
             <MiniForm
-                title="Edit Session"
+                title="Create New Session"
                 field={{
                     teams: [
                         "design",

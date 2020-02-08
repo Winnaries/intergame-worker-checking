@@ -1,0 +1,94 @@
+.miniform {
+    overflow: hidden;
+    background: white;
+    display: grid;
+    grid-template-rows: 70px 370px;
+    height: 440px;
+    z-index: 2;
+    
+}
+
+.miniform>title {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+.miniform>form {
+    display: grid;
+    grid-auto-rows: 50px;
+    row-gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.miniform>form>button {
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    justify-content: center;
+    font-size: 1.2em;
+    color: white;
+    background-color: rgb(42, 115, 251);
+}
+
+.miniform>form>select {
+    appearance: none;
+    padding-left: 3%;
+    border: none;
+    /* Make the border inner and not on the edge */
+    border: solid 1px #f1f1f1;
+    border-radius: 5px;
+    padding-left: 4%;
+    text-transform: capitalize;
+    background: white;
+    font-family: sans-serif;
+    /* So that the input text doesn't stick left */
+}
+
+
+.miniform>form>select::placeholder {
+    color: rgba(3, 27, 78, .7);
+}
+
+.miniform>form>select:focus {
+    transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
+    outline: none !important;
+    border: solid 1px rgb(38, 54, 250);
+}
+
+.miniform>form>input {
+    background-image: linear-gradient(transparent, transparent);
+    /* For removing input box outline in iOS */
+    transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
+    height: 100%;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /* Make the border inner and not on the edge */
+    border: solid 1px #f1f1f1;
+    background: white;
+    border-radius: 5px;
+    padding-left: 4%;
+    font-family: sans-serif;
+    /* So that the input text doesn't stick left */
+}
+
+.miniform>form>input::placeholder {
+    color: lightgray
+}
+
+.miniform>form>input:focus {
+    transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
+    outline: none !important;
+    border: solid 1px rgb(38, 54, 250);
+}
+
+.miniform>form>input:focus::placeholder {
+    color: transparent;
+}

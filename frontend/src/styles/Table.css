@@ -1,0 +1,41 @@
+.table {
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 40px 320px;
+    height: 360px;
+}
+
+.table .table-body {
+    display: grid;
+    grid-auto-rows: 80px;
+    overflow: auto;
+}
+
+.table .table-label {
+    height: 39px;
+    color: black;
+    font-weight: 500;
+    background: rgba(223, 223, 223, 0.3);
+}
+
+.row {
+    height: 79px;
+    color: rgb(109, 109, 109);
+    font-weight: 400;
+}
+
+/* Row and label are of the same template */
+.row, .table .table-label {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    width: 60%;
+}

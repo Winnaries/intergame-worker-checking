@@ -1,55 +1,54 @@
-import React, { useState, useRef } from "react";
-import "../../styles/Login.css";
+import React, { useState } from "react";
+import { Header } from "../../components/Decorations";
+import "../../styles/WorkerForm.css";
 import { Redirect } from "react-router-dom";
 
 export default () => {
+    // Define values
     const [field, setField] = useState({
-        secretKey: ""
+        password: ""
     });
     const [redirect, setRedirect] = useState(false);
 
-    const scrollToForm = ref => {
-        window.scrollTo({ behavior: "smooth", top: 100, position: "absolute" });
-    };
+    // Form commands
+    const clearForm = () => Object.keys(field).map(key => (field[key] = ""));
 
-    const formRef = useRef(null);
-    const executeScroll = () => scrollToForm(formRef);
-
+    // Handle posting form
     const handleSubmit = event => {
         event.preventDefault();
-        // COMPARE SECRET KEY
-        if(field.secretKey === "password") setRedirect(true);
+
+        // FAKE LOGIN SYSTEM
+        if (field.password === "password") {
+            setRedirect(true);
+        }
     };
 
+    // Handle change in form values
     const handleChange = event => {
         event.preventDefault();
-        let fieldcopy = { ...field };
-        fieldcopy[event.target.name] = event.target.value;
-        setField(fieldcopy);
+        let fieldCopy = { ...field };
+        fieldCopy[event.target.name] = event.target.value;
+        setField(fieldCopy);
     };
 
-    if(redirect) return <Redirect to="/admin/dashboard"/>
+    if (redirect) return <Redirect to="/admin/dashboard" />;
+    // Render form to the user
     return (
-        <div className="adminPage">
-            <div className="header">Intergames HR</div>
-            <div className="whiteBox">
-                <div className="title">Admin Login</div>
-                <form className="whiteBoxForm" onSubmit={handleSubmit} ref={formRef}>
-                    <input
-                        name="secretKey"
-                        type="password"
-                        className="passwordField formField"
-                        onChange={handleChange}
-                        value={field.secretKey}
-                        placeholder="Enter password"
-                        required
-                        onSelect={executeScroll}
-                    />
-                    <button className="submitBtn" type="submit">
-                        Submit
-                    </button>
-                </form>
-            </div>
+        <div className="worker-form admin-form">
+            <Header />
+            <form onSubmit={handleSubmit}>
+                <title>Admin Login</title>
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Enter password"
+                    title="Enter admin password"
+                    value={field.password}
+                    onChange={handleChange}
+                    required
+                />
+                <button type="submit">Submit</button>
+            </form>
         </div>
     );
 };

@@ -1,87 +1,81 @@
-import React, { useContext, useState } from "react";
-import "../../styles/Login.css";
-import "../../styles/Dashboard.css";
-import { InfoContext } from "../../contexts/InfoContext";
-import Session from "../../components/Session";
-import CreateSession from "../../components/CreateSession";
+import React, { useState, useContext } from "react";
+import { Header } from "../../components/Decorations";
+import NewSession from "../../components/NewSession";
 import EditSession from "../../components/EditSession";
-
+import SessionDetails from "../../components/SessionDetails";
+import ScanQR from "../../components/ScanQR";
+import { DisplayContext } from "../../contexts/DisplayContext";
+import { ValueContext } from "../../contexts/ValueContext";
+import Table from "../../components/Table";
+import "../../styles/TablePage.css";
 
 export default () => {
-    const context = useContext(InfoContext);
-
+    const disp = useContext(DisplayContext);
+    const val = useContext(ValueContext);
     // Change sessions to update from context
-    const [sessions, setSessions] = useState([
-        {
-            name: "Building",
-            startTime: "12.00-13.00",
-            endTime: +new Date(),
-            workers: 60
-        },
-        {
-            name: "Stand Practice",
-            startTime: "10.00-12.25",
-            endTime: +new Date(),
-            workers: 25
-        },
-        {
-            name: "Building",
-            startTime: "12.45-14.00",
-            endTime: +new Date(),
-            workers: 10
-        },
-        {
-            name: "Cutout",
-            startTime: "9.00-12.00",
-            endTime: +new Date(),
-            workers: 35
-        },
-        {
-            name: "Building",
-            startTime: "12.45-14.00",
-            endTime: +new Date(),
-            workers: 10
-        }
-    ]);
 
-    // Define view modes by "view", "edit", "create"
-    const [viewMode, setViewMode] = useState("edit")
-
-    const displayView = () => {
-        switch(viewMode) {
-            case "edit":
-                return <EditSession/>
-            case "create":
-                return <CreateSession/>
-            default:
-                return null;
-        }
+    const viewSessionDetails = event => {
+        event.preventDefault();
+        val.setValue("currentSession",event.target.name);
+        disp.setDisplay("viewingSessionDetails");
     }
 
-    const listSessions = () => {
-        let toRender = sessions.map(session => {
-            return (
-                <Session
-                    name={session.name}
-                    time={session.startTime}
-                    workers={session.workers}
+    const createSession = event => {
+        event.preventDefault();
+        disp.setDisplay("creatingNewSession");
+    };
+
+    const reset = event => {
+        event.preventDefault();
+        disp.setDisplay(null);
+    }
+
+    const displayView = () => {
+        const toRender = [];
+
+        switch(disp.displayStatus) {
+            case "creatingNewSession":
+                toRender.push(<NewSession/>);
+                break;
+            case "editingSession":
+                toRender.push(<EditSession/>);
+                break;
+            case "viewingSessionDetails":
+                toRender.push(<SessionDetails/>);
+                break;
+            case "scanQR":
+                toRender.push(<ScanQR/>);
+                break;
+            default:
+        }
+            
+        if (disp.backgroundBlur)
+            toRender.push(
+                <div
+                    className="transparent-screen"
+                    onClick={reset}
                 />
             );
-        });
-        return toRender;
+
+        return <div>{toRender}</div>;
     };
 
     return (
-        <div className="dashboard">
-            <div className="header">Intergames HR</div>
-            <div className="white-box">
-                <div className="sessions-title">Sessions</div>
-                <Session name="Sector" time="Time" workers="People" className="sessions-label"/>
-                <div className="sessions-content">
-                    {listSessions()}
+        <div className="current-sessions">
+            <div
+                className={`current-sessions-bkg ${
+                    disp.backgroundBlur ? "blurred" : ""
+                }`}
+            >
+                <Header />
+
+                <div className="white-box">
+                    <title>Active Sessions</title>
+                    <Table data={val.values.sessions} labels={["Team", "Time", "People"]} rowOnClick={viewSessionDetails}/>
                 </div>
+                <button onClick={createSession}>Create Session</button>
             </div>
-            <button className="sessions-create-btn">Create Session</button>
+            {displayView()}
         </div>
     );
 };
