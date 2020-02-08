@@ -1,14 +1,27 @@
 const express = require('express');
+const dns = require('dns');
 const router = express.Router();
 
-router.get('/sessions', (req, res) => {});
+const SessionController = new (require('../controller/sessions'))();
 
-router.get('/sessions/:id', (req, res) => {});
+router.get('/sessions', SessionController.all);
+
+router.get('/sessions/active', SessionController.active);
+
+router.get('/sessions/inactive', SessionController.inactive);
+
+router.get('/sessions/:id', SessionController.get);
 
 router.get('/sessions/:studentID([0-9]{10})', (req, res) => {});
 
-router.get('/students/:sessionID([0-9]+)', (req, res) => {});
+router.get('/workers/:sessionID', SessionController.allWorkers);
 
-router.post('/qr/:sessionID', (req, res) => {});
+router.get('/workers/:sessionID/active', SessionController.activeWorkers);
+
+router.get('/workers/:sessionID/pending', SessionController.pendingWorkers);
+
+router.post('/worker/pend/:sessionID/:workerID', SessionController.pendWorker);
+
+router.post('/worker/pend/:sessionID', (req, res) => {});
 
 module.exports = router;

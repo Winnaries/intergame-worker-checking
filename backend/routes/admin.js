@@ -1,16 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/worker/:session', (req, res) => {});
+const SessionController = new (require('../controller/sessions'))();
 
-router.delete('/worker/:session', (req, res) => {});
+router.put('/worker/activate/:sessionID', SessionController.activateWorker);
 
-router.post('/sessions', (req, res) => {});
+router.delete('/worker/:sessionID/:workerID', SessionController.removeWorker);
 
-router.put('/sessions/:id', (req, res) => {});
+router.delete('/worker/:sessionID/:studentID', (req, res) => {});
 
-router.put('/sessions/:id/:type', (req, res) => {});
+router.post('/sessions', SessionController.create);
 
-router.delete('/sessions/:id', (req, res) => {});
+router.put('/sessions/:id', SessionController.edit);
+
+router.put('/sessions/:id/:type', SessionController.toggle);
+
+router.delete('/sessions/:id', SessionController.delete);
 
 module.exports = router;

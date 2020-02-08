@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const shortID = require('shortid');
+
 const workerSchema = new Schema({
     name: {
         first: String,
@@ -32,24 +34,28 @@ const sessionSchema = new Schema({
         type: String,
         maxlength: 100
     },
-    state: {
+    active: {
         type: Boolean,
         default: false
     },
-    joined: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Worker'
-    }],
-    pending: [{
+    workers: [{
         worker: {
             type: Schema.Types.ObjectId,
             ref: 'Worker'
         },
-        identifier: {
+        active: {
+            type: Boolean,
+            default: false
+        },
+        code: {
             type: String,
-            match: /[a-zA-Z0-9]{7}/,
-            required: true,
-            select: false
+            default: shortID.generate()
+        },
+        ip: String,
+        machine: String,
+        suspicious: {
+            type: Boolean,
+            default: false
         }
     }]
 });
