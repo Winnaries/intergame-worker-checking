@@ -8,9 +8,7 @@
       "authSource": "admin",
       "useNewUrlParser": true,
       "useUnifiedTopology": true,
-      "useFindAndModify": false,
-      "ssl": false,
-      "sslValidate": false
+      "useFindAndModify": false
     }
   }
 }
