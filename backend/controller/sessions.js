@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Session = new (require('../models/sessions'))();
+const Worker = new (require('../models/workers'))();
 
 class SessionController {
 
@@ -19,17 +20,24 @@ class SessionController {
     }
 
     async pendWorker(req, res) {
-        const { sessionID, workerID } = req.params;
-        res.send(await Session.pendWorker(sessionID, workerID));
+        if (!req.params.workerID) req.params.workerID = await Worker.getID(req.body.studentID);
+        const code = await Session.pendWorker(req.params.sessionID, req.params.workerID);
+        if (!code) {
+            res.json({ error: "The session is currently closed." });
+        } else {
+            res.json({ identifier: code });
+        }
     }
 
     async activateWorker(req, res) {
         const { sessionID } = req.params;
         const { identifier: code } = req.body;
-        res.send(await Session.activateWorker(sessionID, code));
+        await Session.activateWorker(sessionID, code);
+        res.json({ code, status: "activated" })
     }
 
     async removeWorker(req, res) {
+        if (!req.params.workerID) req.params.workerID = await Worker.getID(req.params.studentID);
         const { sessionID, workerID } = req.params;
         res.send(await Session.removeWorker(sessionID, workerID));
     }

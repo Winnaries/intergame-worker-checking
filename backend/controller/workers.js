@@ -1,12 +1,17 @@
 const _ = require('lodash');
-const WorkerModel = require('../models/workers');
-const SessionModel = require('../models/sessions');
-const Worker = new WorkerModel();
-const Session = new SessionModel();
+const Worker = new (require('../models/workers'))();
+const Session = new (require('../models/sessions'))();
 
 class WorkerController {
 
+    async mySessions(req, res) {
+        if (!req.params.workerID) req.params.workerID = await Worker.getID(req.params.studentID);
+        res.json(await Worker.mySessionsFromID(req.params.workerID));
+    }
 
+    async getID(req, res) {
+        res.json(await Worker.getID(req.params.studentID));
+    }
 
 }
 

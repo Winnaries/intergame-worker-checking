@@ -4,27 +4,30 @@ const { Session, Worker } = require('./schema/workforce');
 
 class SessionModel {
 
-    // Get all sessions joined of a worker
-
     // Get all workers in a sessions
     async allWorkers(sessionID) {
-        return Session.findById(sessionID).workers;
+        const session = await Session.findById(sessionID);
+        return session.workers;
     }
 
     // Get all active workers in a sessions
     async activeWorkers(sessionID) {
-        return Session.findById(sessionID).workers.filter(info => info.active === true);
+        const session = await Session.findById(sessionID);
+        return session.workers.filter(info => info.active === true);
     }
 
     // Get all pending workers in a session
     async pendingWorkers(sessionID) {
-        return Session.findById(sessionID).workers.filter(info => info.active === false);
+        const session = await Session.findById(sessionID);
+        return session.workers.filter(info => info.active === false);
     }
 
     // Add pending worker to a session
     async pendWorker(sessionID, workerID) {
         const code = shortID.generate();
-        const session = await Session.findOne({ _id: sessionID, workers: { $elemMatch: { worker: workerID }}});
+        let session = await Session.findOne({ _id: sessionID, active: true });
+        if (!(await session)) return null;
+        session = await Session.findOne({ _id: sessionID, workers: { $elemMatch: { worker: workerID }}});
         if (await session) return this.rependWorker(code, sessionID, workerID);
         await Session.updateOne(
             { _id: sessionID },
@@ -34,7 +37,7 @@ class SessionModel {
 
     // Regenerate the specified pending worker
     async rependWorker(code, sessionID, workerID) {
-        await Session.updateOne(
+        const session = await Session.updateOne(
             { _id: sessionID },
             { "workers.$[identifier].code": code },
             {
@@ -46,7 +49,7 @@ class SessionModel {
 
     // Activate worker in a session
     async activateWorker(sessionID, code) {
-        return Session.updateOne(
+         return Session.updateOne(
             { _id: sessionID },
             { "workers.$[identifier].active": true },
             {
@@ -69,10 +72,12 @@ class SessionModel {
         return Session.find({});
     }
 
+    // Get all active sessions
     async active() {
         return Session.find({ active: true });
     }
 
+    // Get all inactive sessions
     async inactive() {
         return Session.find({ active: false });
     }
