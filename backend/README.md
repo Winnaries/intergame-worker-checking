@@ -76,13 +76,6 @@ The following API is restricted to site administrator and require authentication
 	- **studentID**: unique 10-digits Chula Student ID
 - Return a simple `HTTP 200` if success
 
-#### `DELETE /api/admin/worker/:sessionID/:workerID`
-- Remove a worker from a session
-- Path Parameters
-	- **sessionID**:  an ID of a session we want to remove worker from
-	- **workerID**: unique 10-digits Chula Student ID
-- Return a simple `HTTP 200` if success
-
 #### `POST /api/admin/sessions`
 - Create a new session 
 - Body Parameters
