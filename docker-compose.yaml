@@ -10,7 +10,9 @@ services:
     restart: always
     ports:
       - 8080:3000
-      - command: "npm start"
+    command: "npm start"
+    networks:
+      - main
   frontend:
     image: node:12
     user: node
@@ -21,6 +23,8 @@ services:
     ports:
       - 80:3000
     command: "npm start"
+    networks:
+      - main
   mongo:
     image: mongo:4
     restart: always
