@@ -1,6 +1,16 @@
 # General Environment
 version: "3.7"
 services:
+  backend:
+    image: node:12
+    user: node
+    working_dir: /home/node/app
+    volumes:
+      - ./backend:/home/node/app
+    restart: always
+    ports:
+      - 8080:3000
+      - command: "npm start"
   frontend:
     image: node:12
     user: node
