@@ -1,6 +1,6 @@
 {
   "Workforce": {
-    "dbUrl": "mongodb://localhost:27017",
+    "dbUrl": "mongodb://mongo:27017",
     "dbConfig": {
       "user": "winnaries",
       "pass": "intergames14",
