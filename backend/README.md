@@ -51,7 +51,7 @@ An object that describe a working session created by the committee. The main con
 
 A list of API use to authenticate a connection as an administrator.
 
-#### `POST /api/admin/login`
+#### `POST /api/login`
 - Login as an admin
 - Body Parameters
 	- **password**: a secret string distributed to each member of the committee
@@ -59,7 +59,7 @@ A list of API use to authenticate a connection as an administrator.
 
 ## Administrator Routes
 
-The following API is restricted to site administrator and require authentication. 
+The following API is restricted for site's administrator. As an authorization, the user need to include `jwt` token as a successful result from login API and embed in the `Authorization` header within the HTTP request. For instance, the user might implement the following header/value pair: `Authroization: Bearer <token>` 
 
 #### `PUT /api/admin/worker/activate/:sessionID`
 - Add a worker to a session
