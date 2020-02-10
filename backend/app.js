@@ -12,7 +12,7 @@ app.use(parser.json());
 app.use(passport.initialize());
 require('./middleware/jwt')(passport);
 app.use('/api/admin', passport.authenticate('jwt', { session: false }));
-app.use('/api/admin', auth);
+app.use('/api', auth);
 app.use('/api/admin', admin);
 app.use('/api', public);
 app.listen('3000');
