@@ -6,7 +6,7 @@ class AuthController {
 
     async login(req, res) {
         const result = await this.validate(req.body.password);
-        if (result) res.json({ token: result });
+        if (result) res.json({ token: await result });
         else res.send(401);
     }
 
