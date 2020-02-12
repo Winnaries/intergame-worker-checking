@@ -12,7 +12,7 @@ export default () => {
                 <QRCode
                     value={val.values.QR?val.values.QR:""}
                     className="generated"
-                    size="2048"
+                    size={320}
                 />
             </div>
         </div>

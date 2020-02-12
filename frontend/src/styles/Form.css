@@ -1,29 +1,48 @@
-.form>form {
-    grid-row: 2;
+.form-page {
+    width: 100vw;
+    height: 720px;
+    top: 0;
+    left: 0;
+    position: absolute;
     display: grid;
-    grid-template-rows: auto repeat(4, 1fr);
-    row-gap: 6%;
-    padding: 7%;
-    margin: 10% 5% 30%;
+    overflow: hidden;
+    grid-template-rows: 1fr 1fr 5fr 1fr;
+}
+
+.form-page.admin-form {
+    grid-template-rows: 1fr 1.5fr 3.5fr 2fr;
+}
+
+.form-page>form {
     background: white;
     color: rgb(16, 33, 78);
+    grid-row: 3;
+    display: grid;
+    grid-template-rows: 80px repeat(4, 60px);
+    row-gap: 10px;
+    margin: 0 5%;
+    padding: 20px;
     box-shadow: 0 10px 20px rgba(3, 27, 78, .1);
     border: 1px solid rgba(3, 27, 78, .1);
     border-radius: 5px;
-    overflow: hidden;
 }
 
-.form>form>title {
+.form-page.admin-form>form {
+    grid-template-rows: 80px repeat(2, 60px);
+}
+
+.form-page>form>title {
     font-weight: 600;
-    font-size: 1.8em;
+    font-size: 1.6em;
     display: flex;
-    justify-self: center;
-    text-align: center;
     justify-content: center;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
     width: 60%;
 }
 
-.form>form>button {
+.form-page>form>button {
     font-weight: 600;
     transition: all .25s ease;
     border: none;
@@ -36,12 +55,12 @@
     box-shadow: 0 10px 20px rgba(3, 27, 78, 0.1);
 }
 
-.form>form>button:focus {
+.form-page>form>button:focus {
     transition: all 0.25s ease;
     outline: none !important;
 }
 
-.form>form>input {
+.form-page>form>input {
     background-image: linear-gradient(transparent, transparent);
     /* For removing input box outline in iOS */
     transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
@@ -59,16 +78,16 @@
     /* So that the input text doesn't stick left */
 }
 
-.form>form>input::placeholder {
+.form-page>form>input::placeholder {
     color: rgba(3, 27, 78, .7);
 }
 
-.form>form>input:focus {
+.form-page>form>input:focus {
     transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
     outline: none !important;
     border: solid 1px rgb(38, 54, 250);
 }
 
-.form>form>input:focus::placeholder {
+.form-page>form>input:focus::placeholder {
     color: transparent;
 }

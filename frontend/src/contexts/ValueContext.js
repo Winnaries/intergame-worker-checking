@@ -3,61 +3,45 @@ import React, { useState } from "react";
 const ValueContext = React.createContext();
 
 const ValueProvider = props => {
-
     const [values, setValues] = useState({
         QR: null,
-        currentSession: null,
-        sessions: [{
-            name: "Building",
-            startTime: "12.00-13.00",
-            workers: 60
-        },
-        {
-            name: "Stand Practice",
-            startTime: "10.00-12.25",
-            workers: 25
-        },
-        {
-            name: "Stand Practice",
-            startTime: "10.00-12.25",
-            workers: 25
-        },
-        {
-            name: "Stand Practice",
-            startTime: "10.00-12.25",
-            workers: 25
-        },
-        {
-            name: "Stand Practice",
-            startTime: "10.00-12.25",
-            workers: 25
-        },
-        {
-            name: "Stand Practice",
-            startTime: "10.00-12.25",
-            workers: 25
-        },
-        {
-            name: "Stand Practice",
-            startTime: "10.00-12.25",
-            workers: 25
-        }]
+        sessions: null,
+        workers: null,
+        studentID: null
     });
+    const [currentSession, setCurrentSession] = useState({});
+    const [currentWorker, setCurrentWorker] = useState({});
+    const [workers, setWorkers] = useState([]);
+    const [API] = useState("http://winnaries.com:8080/api");
+
+    const login = tokenString =>
+        localStorage.setItem("token", `Bearer ${tokenString}`);
+
+    const logout = () => localStorage.clear();
+
+    const getToken = () => localStorage.getItem("token");
 
     const setValue = (key, value) => {
-        let dictCopy = {...values};
+        let dictCopy = { ...values };
         dictCopy[key] = value;
         setValues(dictCopy);
-    }
-
-    const resetValues = () => Object.keys(values).map(key => values[key] = null);
+    };
 
     return (
         <ValueContext.Provider
             value={{
                 values,
                 setValue,
-                resetValues
+                API,
+                login,
+                logout,
+                getToken,
+                currentSession,
+                setCurrentSession,
+                currentWorker,
+                setCurrentWorker,
+                workers,
+                setWorkers
             }}
         >
             {props.children}

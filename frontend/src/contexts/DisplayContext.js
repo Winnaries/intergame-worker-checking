@@ -11,7 +11,6 @@ const DisplayProvider = props => {
         creatingNewSession
         viewingSessionDetails
         editingSession
-        currentSessions
     */
     const [displayStatus, setDisplay] = useState(null);
     const [backgroundBlur, setBackgroundBlur] = useState(false);

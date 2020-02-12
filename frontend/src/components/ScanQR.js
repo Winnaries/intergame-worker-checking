@@ -14,6 +14,7 @@ export default () => {
             val.setValue("QR", data);
             // Sets the state for double checking
             setResult(data);
+            
             toast("QR successfully scanned");
         }
     };

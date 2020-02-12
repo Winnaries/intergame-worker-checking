@@ -1,0 +1,179 @@
+.select-session {
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 80%;
+    top: 18%;
+    height: 430px;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    overflow: hidden;
+}
+
+.select-session>title {
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.select-session .available-sessions {
+    grid-row: 2;
+    border-spacing: 0;
+    display: grid;
+    grid-auto-rows: 50px;
+    row-gap: 10px;
+    overflow-y: auto;
+    margin: 0 5% 5%;
+    border-radius: 5px;
+}
+
+.session-join {
+    background: rgba(209, 209, 209, 0.466);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: 50px;
+    align-items: center;
+    text-align: center;
+    color: rgb(109, 109, 109);
+    font-weight: 400;
+    transition: all 0.25s ease;
+    font-size: 1em;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.session-join .session-name {
+    background: none;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.session-join>button {
+    font-weight: 600;
+    font-size: 1em;
+    background: #0069ff;
+    color: white;
+    height: 100%;
+    border: none;
+}
+
+.session-details {
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 80%;
+    top: 18%;
+    height: 430px;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    overflow: hidden;
+}
+
+.session-details .head-block {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.session-details .body-block {
+    display: grid;
+    grid-template-rows: 54.5px 268px;
+}
+
+.session-details .body-block .headings {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    background: rgb(231, 231, 231);
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.session-details .body-block .headings .add-workers {
+    background: rgb(42, 115, 251);
+    color: white;
+    height: 100%;
+    align-self: center;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.session-details .body-block .available-workers {
+    display: grid;
+    grid-auto-rows: 53.6px;
+    overflow: auto;
+}
+
+.session-details .foot-block {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    border-top: 1px solid #f1f1f1;
+}
+
+.session-details .foot-block .go-edit, .session-details .foot-block .go-delete {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.session-details .foot-block .go-edit {
+    border-right: 1px solid #f1f1f1;
+}
+
+.session-details .body-block .headings .subtitle-workers {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 500;
+    overflow-x: scroll;
+}
+
+.session-details .details-title {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.worker {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.worker .worker-name {
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.worker .deleteBtn {
+    grid-column: 2;
+    background: rgb(187, 107, 107);
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

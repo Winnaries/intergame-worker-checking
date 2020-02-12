@@ -1,9 +1,24 @@
+.mini-form-page {
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 80%;
+    top: 10%;
+    height: 550px;
+    z-index: 2;
+    overflow: hidden;
+}
+
 .miniform {
     overflow: hidden;
     background: white;
     display: grid;
-    grid-template-rows: 70px 370px;
-    height: 440px;
+    grid-template-rows: 70px 480px;
+    height: 550px;
     z-index: 2;
     
 }
@@ -18,7 +33,7 @@
 
 .miniform>form {
     display: grid;
-    grid-auto-rows: 50px;
+    grid-auto-rows: minmax(50px, auto);
     row-gap: 10px;
     padding: 10px;
     border-radius: 5px;
@@ -35,7 +50,7 @@
     background-color: rgb(42, 115, 251);
 }
 
-.miniform>form>select {
+.miniform>form .checkbox-group {
     appearance: none;
     padding-left: 3%;
     border: none;
@@ -46,15 +61,18 @@
     text-transform: capitalize;
     background: white;
     font-family: sans-serif;
+    font-size: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     /* So that the input text doesn't stick left */
 }
 
 
-.miniform>form>select::placeholder {
+.miniform>form .checkbox-group::placeholder {
     color: rgba(3, 27, 78, .7);
 }
 
-.miniform>form>select:focus {
+.miniform>form .checkbox-group:focus {
     transition: all cubic-bezier(0.645, 0.045, 0.355, 1) .25s;
     outline: none !important;
     border: solid 1px rgb(38, 54, 250);
@@ -67,6 +85,7 @@
     height: 100%;
     width: 100%;
     border: none;
+    font-size: 1em;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;

@@ -1,31 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/Form.css";
+import { Redirect } from "react-router-dom";
+import { Header } from "./Decorations";
+import Axios from "axios";
+import { ValueContext } from "../contexts/ValueContext";
 
-export default props => {
+// Handle change in form values
+const handleChange = (event, fields, setter) => {
+    event.preventDefault();
+    let fieldsCopy = { ...fields };
+    fieldsCopy[event.target.name] = event.target.value;
+    setter(fieldsCopy);
+};
+
+export const AdminForm = () => {
+    // Define context
+    const val = useContext(ValueContext);
+
     // Define values
-    const [field, setField] = useState(props.field);
+    const [field, setField] = useState({
+        password: ""
+    });
+    const [redirect, setRedirect] = useState(false);
 
-    // Form commands
-    const clearForm = () => Object.keys(field).map(key => (field[key] = ""));
-
-    // Handle posting form
-    const handleSubmit = event => {
+    // Set specific handler
+    const adminChange = event => handleChange(event, field, setField);
+    const adminSubmit = event => {
         event.preventDefault();
-        props.onSubmit();
+
+        const headers = {
+            "Content-Type": "application/json"
+        };
+
+        Axios.post(val.API + "/login", field, { headers })
+            .then(res => {
+                val.login(res.data.token);
+                setRedirect(true);
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Invalid");
+            });
     };
 
-    // Handle change in form values
-    const handleChange = event => {
+    if (redirect) return <Redirect to="/admin/dashboard" />;
+    // Render form to the admin
+    return (
+        <div className="form-page admin-form">
+            <Header />
+            <form onSubmit={adminSubmit}>
+                <title>Admin Login</title>
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Enter password"
+                    title="Enter admin password"
+                    value={field.password}
+                    onChange={adminChange}
+                    required
+                />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    );
+};
+
+export const UserForm = () => {
+    // Define context
+    const val = useContext(ValueContext);
+
+    // Define values
+    const [field, setField] = useState({
+        firstName: "",
+        lastName: "",
+        studentID: ""
+    });
+    const [redirect, setRedirect] = useState(false);
+
+    // Set specific handlers
+    const userChange = event => handleChange(event, field, setField);
+    const userSubmit = event => {
         event.preventDefault();
-        let fieldCopy = { ...field };
-        fieldCopy[event.target.name] = event.target.value;
-        setField(fieldCopy);
+        // Do something
+        val.setValue("studentID", field.studentID);
+        setRedirect(true);
     };
 
+    if (redirect) return <Redirect to="/current-sessions" />;
     // Render form to the user
     return (
-        <div className={`form ${props.className?props.className:""}`}>
-            <form onSubmit={handleSubmit}>
+        <div className="form-page">
+            <Header />
+            <form onSubmit={userSubmit} className="form">
                 <title>Enter Your Information</title>
                 <input
                     name="firstName"
@@ -34,7 +100,7 @@ export default props => {
                     placeholder="First name"
                     title="Enter your first name"
                     value={field.firstname}
-                    onChange={handleChange}
+                    onChange={userChange}
                     required
                 />
                 <input
@@ -44,7 +110,7 @@ export default props => {
                     placeholder="Last name"
                     title="Enter your last name"
                     value={field.lastname}
-                    onChange={handleChange}
+                    onChange={userChange}
                     required
                 />
                 <input
@@ -54,7 +120,7 @@ export default props => {
                     placeholder="Student ID"
                     title="Enter your Chulalongkorn Student ID"
                     value={field.studentID}
-                    onChange={handleChange}
+                    onChange={userChange}
                     required
                 />
                 <button type="submit">Submit</button>
@@ -62,3 +128,6 @@ export default props => {
         </div>
     );
 };
+
+// Form commands
+//const clearForm = fields => Object.keys(fields).map(key => (fields[key] = ""));

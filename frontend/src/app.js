@@ -1,10 +1,9 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useContext } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { DisplayProvider } from "./contexts/DisplayContext.js";
-import { ValueProvider } from "./contexts/ValueContext.js";
-import WorkerForm from "./pages/user/WorkerForm.js";
+import { ValueProvider, ValueContext } from "./contexts/ValueContext.js";
+import { AdminForm, UserForm } from "./components/Form";
 import ErrorPage from "./pages/user/ErrorPage.js";
-import Login from "./pages/admin/Login.js";
 import Dashboard from "./pages/admin/Dashboard.js";
 import "./styles/Main.css";
 import { toast } from "react-toastify";
@@ -12,20 +11,34 @@ import CurrentSessions from "./pages/user/CurrentSessions.js";
 
 toast.configure();
 
+const ProtectedRoute = props => {
+    const val = useContext(ValueContext);
+
+    if (val.getToken())
+        return <Route exact path={props.path} component={props.component} />;
+    else return <Redirect to="/admin" />;
+};
+
+const UserRoute = props => {
+    const val = useContext(ValueContext);
+
+    if (val.values.studentID)
+        return <Route exact path={props.path} component={props.component} />;
+    else return <Redirect to="/" />;
+};
+
 export default () => {
     return (
         <DisplayProvider>
             <ValueProvider>
                 <Switch>
-                    <Route exact path="/" component={WorkerForm} />
-                    <Route
-                        exact
+                    <Route exact path="/" component={UserForm} />
+                    <Route exact path="/admin" component={AdminForm} />
+                    <UserRoute
                         path="/current-sessions"
                         component={CurrentSessions}
                     />
-                    <Route exact path="/admin" component={Login} />
-                    <Route
-                        exact
+                    <ProtectedRoute
                         path="/admin/dashboard"
                         component={Dashboard}
                     />

@@ -27,7 +27,7 @@
 /* Row and label are of the same template */
 .row, .table .table-label {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
     border-bottom: 1px solid #f1f1f1;
 }
 
@@ -37,5 +37,10 @@
     align-items: center;
     justify-self: center;
     text-align: center;
+    text-transform: capitalize;
     width: 60%;
+}
+
+.col.middle {
+    width: 100%;
 }
