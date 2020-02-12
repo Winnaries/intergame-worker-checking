@@ -3,7 +3,7 @@ const router = express.Router();
 
 const SessionController = new (require('../controller/sessions'))();
 
-router.put('/workers/activate/:sessionID', SessionController.activateWorker);
+router.put('/workers/:sessionID', SessionController.activateWorker);
 
 router.delete('/workers/:sessionID/:studentID([0-9]{10})', SessionController.removeWorker);
 
