@@ -6,19 +6,19 @@ class SessionModel {
 
     // Get all workers in a sessions
     async allWorkers(sessionID) {
-        const session = await Session.findById(sessionID);
+        const session = await Session.findById(sessionID).populate('workers.worker');
         return session.workers;
     }
 
     // Get all active workers in a sessions
     async activeWorkers(sessionID) {
-        const session = await Session.findById(sessionID);
+        const session = await Session.findById(sessionID).populate('workers.worker');
         return session.workers.filter(info => info.active === true);
     }
 
     // Get all pending workers in a session
     async pendingWorkers(sessionID) {
-        const session = await Session.findById(sessionID);
+        const session = await Session.findById(sessionID).populate('workers.worker');
         return session.workers.filter(info => info.active === false);
     }
 
