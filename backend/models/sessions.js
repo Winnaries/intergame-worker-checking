@@ -6,19 +6,19 @@ class SessionModel {
 
     // Get all workers in a sessions
     async allWorkers(sessionID) {
-        const session = await Session.findById(sessionID);
+        const session = await Session.findById(sessionID).populate('workers.worker');
         return session.workers;
     }
 
     // Get all active workers in a sessions
     async activeWorkers(sessionID) {
-        const session = await Session.findById(sessionID);
+        const session = await Session.findById(sessionID).populate('workers.worker');
         return session.workers.filter(info => info.active === true);
     }
 
     // Get all pending workers in a session
     async pendingWorkers(sessionID) {
-        const session = await Session.findById(sessionID);
+        const session = await Session.findById(sessionID).populate('workers.worker');
         return session.workers.filter(info => info.active === false);
     }
 
@@ -69,22 +69,22 @@ class SessionModel {
 
     // Get all sessions
     async all() {
-        return Session.find({});
+        return Session.find({}).populate('workers.worker');
     }
 
     // Get all active sessions
     async active() {
-        return Session.find({ active: true });
+        return Session.find({ active: true }).populate('workers.worker');
     }
 
     // Get all inactive sessions
     async inactive() {
-        return Session.find({ active: false });
+        return Session.find({ active: false }).populate('workers.worker');
     }
 
     // Get a session
     async get(id) {
-        return Session.findById(id);
+        return Session.findById(id).populate('workers.worker');
     }
 
     // Create session

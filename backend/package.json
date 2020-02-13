@@ -4,20 +4,25 @@
   "description": "The backend of this project implement Express framework and MongoDB to create an API. Written here is the list of API endpoint that are sufficient and necessary to build a frontend. Simply, we categorised the API into two which are administrator and public routes.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "config": "^3.2.5",
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "fast-csv": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.8.11",
-    "passport-local": "^1.0.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "shortid": "^2.2.15"
   }
 }

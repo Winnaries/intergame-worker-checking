@@ -1,6 +1,6 @@
 {
   "Workforce": {
-    "dbUrl": "mongodb://localhost:27017",
+    "dbUrl": "mongodb://mongo:27017",
     "dbConfig": {
       "user": "winnaries",
       "pass": "intergames14",
@@ -8,7 +8,9 @@
       "authSource": "admin",
       "useNewUrlParser": true,
       "useUnifiedTopology": true,
-      "useFindAndModify": false
+      "useFindAndModify": false,
+      "ssl": false
     }
-  }
+  },
+  "hash": "$2b$10$s9cPpvaTyF2tRrlCWpKUs.AqTdgpo.S.CvptrmcxdmAgyi3hU4Afi"
 }

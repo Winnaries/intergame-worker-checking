@@ -23,9 +23,9 @@ router.get('/workers/:sessionID/active', SessionController.activeWorkers);
 
 router.get('/workers/:sessionID/pending', SessionController.pendingWorkers);
 
-router.post('/workers/:sessionID/:workerID', SessionController.pendWorker);
+router.post('/workers/pend/:sessionID/:workerID', SessionController.pendWorker);
 
-router.post('/workers/:sessionID', SessionController.pendWorker);
+router.post('/workers/pend/:sessionID', SessionController.pendWorker);
 
 router.get('/workers/:studentID/id', WorkerController.getID);
 
