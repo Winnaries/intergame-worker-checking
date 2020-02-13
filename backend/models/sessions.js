@@ -69,22 +69,22 @@ class SessionModel {
 
     // Get all sessions
     async all() {
-        return Session.find({});
+        return Session.find({}).populate('workers.worker');
     }
 
     // Get all active sessions
     async active() {
-        return Session.find({ active: true });
+        return Session.find({ active: true }).populate('workers.worker');
     }
 
     // Get all inactive sessions
     async inactive() {
-        return Session.find({ active: false });
+        return Session.find({ active: false }).populate('workers.worker');
     }
 
     // Get a session
     async get(id) {
-        return Session.findById(id);
+        return Session.findById(id).populate('workers.worker');
     }
 
     // Create session
