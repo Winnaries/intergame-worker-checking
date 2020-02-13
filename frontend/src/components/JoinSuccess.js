@@ -7,7 +7,7 @@ export default () => {
 
     return (
         <div className="join-success">
-            {`You have joined ${val.values.currentSession?val.values.currentSession:"session"}`}
+            {`You have joined ${val.currentSession?val.currentSession:"session"}`}
         </div>
     );
 };

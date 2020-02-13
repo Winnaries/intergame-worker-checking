@@ -18,7 +18,7 @@
     color: rgb(16, 33, 78);
     grid-row: 3;
     display: grid;
-    grid-template-rows: 80px repeat(4, 60px);
+    grid-template-rows: 80px repeat(5, 60px);
     row-gap: 10px;
     margin: 0 5%;
     padding: 20px;

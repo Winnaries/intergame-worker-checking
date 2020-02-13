@@ -1,21 +1,38 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, useContext } from "react";
 import QrReader from "react-qr-reader";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ValueContext } from "../contexts/ValueContext";
+import Axios from "axios";
 
 export default () => {
     const val = useContext(ValueContext);
-    
+
     const [result, setResult] = useState(null);
 
     const handleScan = data => {
         if (data !== null && data !== result) {
-            val.setValue("QR", data);
+            val.setQR(data);
             // Sets the state for double checking
             setResult(data);
-            
-            toast("QR successfully scanned");
+
+            const headers = {
+                "Content-Type": "application/json",
+                Authorization: val.getToken()
+            };
+
+            const toSend = {
+                identifier: data
+            };
+
+            Axios.put(val.API + "/admin/workers/activate/" + val.currentSession["_id"], toSend, {
+                headers
+            })
+                .then(res => {
+                    console.log(res);
+                    toast("QR successfully scanned");
+                })
+                .catch(e => console.log(e));
         }
     };
 

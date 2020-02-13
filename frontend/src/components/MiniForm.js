@@ -206,13 +206,13 @@ export const NewSession = () => {
 
         Axios.post(val.API + "/admin/sessions", toSubmit, { headers })
             .then(res => {
-                /*Axios.put(
+                Axios.put(
                     val.API + "/admin/sessions/" + res.data["_id"] + "/open",
                     null,
                     { headers }
                 )
                     .then(res => console.log(res))
-                    .catch(err => console.log(err));*/
+                    .catch(err => console.log(err));
                 console.log(res);
             })
             .catch(err => console.log(err));

@@ -10,7 +10,7 @@ export default () => {
         <div className="qr">
             <div className="qrcode">
                 <QRCode
-                    value={val.values.QR?val.values.QR:""}
+                    value={val.QR}
                     className="generated"
                     size={320}
                 />

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Header } from "../../components/Decorations";
 import { NewSession, EditSession } from "../../components/MiniForm";
 import { SessionDetails } from "../../components/CustomTable";
@@ -15,9 +15,9 @@ export default () => {
     // Change sessions to update from context
 
     useEffect(() => {
-        Axios.get(val.API + "/sessions")
+        Axios.get(val.API + "/sessions/active")
             .then(res => {
-                val.setValue("sessions", res.data);
+                val.setSessions(res.data);
             })
             .catch(e => console.log(e));
     }, [disp.displayStatus, val]);
@@ -28,7 +28,7 @@ export default () => {
     };
 
     const renderTable = () => {
-        const data = val.values.sessions;
+        const data = val.sessions;
         if (data) {
             return (
                 <Table

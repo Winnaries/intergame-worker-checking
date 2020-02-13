@@ -22,7 +22,7 @@ const ProtectedRoute = props => {
 const UserRoute = props => {
     const val = useContext(ValueContext);
 
-    if (val.values.studentID)
+    if (val.studentID)
         return <Route exact path={props.path} component={props.component} />;
     else return <Redirect to="/" />;
 };

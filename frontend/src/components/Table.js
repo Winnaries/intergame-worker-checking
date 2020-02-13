@@ -8,7 +8,7 @@ const Row = props => {
     const disp = useContext(DisplayContext);
     const val = useContext(ValueContext);
     // Takes in columns as an object
-    const [session] = useState(props.col_data);
+    const [session] = useState(props.value);
 
     const getDate = String => {
         const date = new Date(String);
@@ -45,20 +45,20 @@ const Row = props => {
 
     const setSession = event => {
         event.preventDefault();
-        disp.setDisplay("viewingSessionDetails");
-        val.setWorkers([]);
+        val.setWorkers(session.workers);
         val.setCurrentSession(props.value);
+        disp.setDisplay("viewingSessionDetails");
     }
 
     return (
-        <div className="row" onClick={setSession}>
+        <div className="row" onClick={session.workers?setSession:null}>
             <div className="col">{[...session.teams].join(", ")}</div>
             <div className="col middle">
                 {getDate(session.time.start)}
                 <br />
                 {getTimeRange(session.time.start, session.time.end)}
             </div>
-            <div className="col">{session.workers.length}</div>
+            <div className="col">{session.workers?session.workers.length:session.description}</div>
         </div>
     );
 };
@@ -74,7 +74,6 @@ export default props => {
     const generateRows = () =>
         data.map(session => (
             <Row
-                col_data={session}
                 value={session}
                 key={session._id}
             />

@@ -3,12 +3,12 @@ import React, { useState } from "react";
 const ValueContext = React.createContext();
 
 const ValueProvider = props => {
-    const [values, setValues] = useState({
-        QR: null,
-        sessions: null,
-        workers: null,
-        studentID: null
-    });
+    const [QR, setQR] = useState(null);
+    const [sessions, setSessions] = useState(null);
+    const [studentID, setStudentID] = useState(null);
+    const [lastName, setLastName] = useState(null);
+    const [firstName, setFirstName] = useState(null);
+    const [nameNick, setNameNick] = useState(null);
     const [currentSession, setCurrentSession] = useState({});
     const [currentWorker, setCurrentWorker] = useState({});
     const [workers, setWorkers] = useState([]);
@@ -21,17 +21,9 @@ const ValueProvider = props => {
 
     const getToken = () => localStorage.getItem("token");
 
-    const setValue = (key, value) => {
-        let dictCopy = { ...values };
-        dictCopy[key] = value;
-        setValues(dictCopy);
-    };
-
     return (
         <ValueContext.Provider
             value={{
-                values,
-                setValue,
                 API,
                 login,
                 logout,
@@ -41,7 +33,19 @@ const ValueProvider = props => {
                 currentWorker,
                 setCurrentWorker,
                 workers,
-                setWorkers
+                setWorkers,
+                QR,
+                setQR,
+                sessions,
+                setSessions,
+                studentID,
+                setStudentID,
+                lastName,
+                setLastName,
+                firstName,
+                setFirstName,
+                nameNick,
+                setNameNick
             }}
         >
             {props.children}

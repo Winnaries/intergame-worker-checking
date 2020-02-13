@@ -71,6 +71,7 @@ export const UserForm = () => {
 
     // Define values
     const [field, setField] = useState({
+        nameNick: "",
         firstName: "",
         lastName: "",
         studentID: ""
@@ -82,7 +83,10 @@ export const UserForm = () => {
     const userSubmit = event => {
         event.preventDefault();
         // Do something
-        val.setValue("studentID", field.studentID);
+        val.setNameNick(field.nameNick);
+        val.setFirstName(field.firstName);
+        val.setLastName(field.lastName);
+        val.setStudentID(field.studentID);
         setRedirect(true);
     };
 
@@ -94,12 +98,22 @@ export const UserForm = () => {
             <form onSubmit={userSubmit} className="form">
                 <title>Enter Your Information</title>
                 <input
+                    name="nameNick"
+                    type="text"
+                    pattern="^[a-zA-Z- ]{1,50}$"
+                    placeholder="Nickname"
+                    title="Enter your nickname"
+                    value={field.nameNick}
+                    onChange={userChange}
+                    required
+                />
+                <input
                     name="firstName"
                     type="text"
                     pattern="^[a-zA-Z- ]{1,50}$"
                     placeholder="First name"
                     title="Enter your first name"
-                    value={field.firstname}
+                    value={field.firstName}
                     onChange={userChange}
                     required
                 />
@@ -109,7 +123,7 @@ export const UserForm = () => {
                     pattern="^[a-zA-Z- ]{1,50}$"
                     placeholder="Last name"
                     title="Enter your last name"
-                    value={field.lastname}
+                    value={field.lastName}
                     onChange={userChange}
                     required
                 />

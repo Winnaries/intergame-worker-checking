@@ -27,7 +27,7 @@
 /* Row and label are of the same template */
 .row, .table .table-label {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     border-bottom: 1px solid #f1f1f1;
 }
 
@@ -38,7 +38,8 @@
     justify-self: center;
     text-align: center;
     text-transform: capitalize;
-    width: 60%;
+    width: 80%;
+    overflow: auto;
 }
 
 .col.middle {

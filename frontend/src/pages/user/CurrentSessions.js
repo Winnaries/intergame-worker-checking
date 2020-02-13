@@ -6,7 +6,7 @@ import { Header } from "../../components/Decorations";
 import { SelectSession } from "../../components/CustomTable";
 import ShowQR from "../../components/ShowQR";
 import Table from "../../components/Table";
-import Axios from 'axios';
+import Axios from "axios";
 
 export default () => {
     const disp = useContext(DisplayContext);
@@ -23,34 +23,43 @@ export default () => {
     };
 
     const renderTable = () => {
-        const data = val.values.sessions;
+        const data = val.sessions;
         if (data)
-            return <Table data={data} labels={["Teams", "Time", "Workers"]} />;
+            return (
+                <Table data={data} labels={["Teams", "Time", "Description"]} />
+            );
     };
 
     useEffect(() => {
-        Axios.get(val.API + "/sessions/" + val.values.studentID)
-            .then(res => val.setValue("sessions", res.data))
-            .catch(e => console.log(e));
-    }, [disp.displayStatus]);
+        const interval = setInterval(() => {
+            Axios.get(val.API + "/workers/" + val.studentID + "/sessions")
+                .then(res => val.setSessions(res.data))
+                .catch(e => console.log(e));
+        }, 500);
+
+        return () => clearInterval(interval);
+    }, [val]);
 
     const displayView = () => {
         const toRender = [];
 
         switch (disp.displayStatus) {
             case "joinSessions":
-                console.log("called");
-                toRender.push(<SelectSession sessions={val.values.sessions} />);
+                toRender.push(<SelectSession key={disp.displayStatus} />);
                 break;
             case "showQR":
-                toRender.push(<ShowQR />);
+                toRender.push(<ShowQR key={disp.displayStatus} />);
                 break;
             default:
         }
         // For successful users if (disp_context.displayStatus.) toRender.push(<JoinSuccess/>);
         if (disp.backgroundBlur)
             toRender.push(
-                <div className="transparent-screen" onClick={reset} />
+                <div
+                    className="transparent-screen"
+                    onClick={reset}
+                    key={disp.backgroundBlur}
+                />
             );
         return <div>{toRender}</div>;
     };
